@@ -60,6 +60,7 @@ class ValidScanParametersPortScanner(TestCase):
         try:
             # attempting to assign the ip_address_value from the PortScanner class to validated_ip using the
             # ipaddress module, this is done within a try/except as it will crash if the IP is not valid
+            # validated_ip isn't used other than to confirm it can be assigned
 
             validated_ip = ipaddress.ip_address(ip_address_value)
 
