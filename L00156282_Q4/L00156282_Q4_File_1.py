@@ -7,7 +7,8 @@ from datetime import datetime
 
 
 class PortScanner:
-
+    # providing an IP address, set to "" or None if you wish to manually enter an IP address
+    # ip_address = None
     ip_address = "192.168.178.130"
     # set port scan range here
     starting_port = 21

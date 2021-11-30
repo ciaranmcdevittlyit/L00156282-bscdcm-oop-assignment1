@@ -16,7 +16,7 @@ def ssh_connection(ip, command):
     :param ip: (str) - IP address of the remote server
 
     """
-    # place in a try/except and handle for an authentication error
+    # placed in a try/except to handle an authentication error
     try:
         # imported credentials
         username = creds.USERNAME
@@ -34,6 +34,7 @@ def ssh_connection(ip, command):
             print("There was an error on vm {}".format(ip))
         else:
             print("Commands successfully executed on {}\n\n".format(ip))
+        # close the session at the end
         session.close()
     except paramiko.AuthenticationException:
         print("Authentication Error")

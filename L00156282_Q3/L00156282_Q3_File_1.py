@@ -26,6 +26,7 @@ def ssh_connection(ip, datetime_string):
         session.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         session.connect(ip.rstrip("\n"), username=username, password=password)
         session.invoke_shell()
+        # using the ssh connection create a new file named 'connection.txt' with the current date included
         session.exec_command(f"echo Connection Made - {datetime_string} > connection.txt\n")
         session.close()
     except paramiko.AuthenticationException:
