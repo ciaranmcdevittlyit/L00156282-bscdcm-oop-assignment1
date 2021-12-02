@@ -28,6 +28,7 @@ def get_all_headers_on_the_default_page(soup):
     # print(type(soup))
     print("\n" + "-"*60)
     print("Assignment Q2.1 - (Headers)\n")
+    # search for page_headers & section headers separately and merge both as 'headers'
     default_header = soup.find_all(class_="page_header")
     section_headers = soup.find_all(class_="section_header")
     headers = default_header + section_headers
@@ -48,6 +49,7 @@ def count_occurrences_of_search_term(soup, search_for):
     print("\n" + "-"*60)
     print("Assignment Q2.2 - (Number of apaches on the default page)\n")
     all_text = soup.get_text()
+    # assign all text as lowercase so search can be case insensitive
     all_text_lower = all_text.lower() 
     num_of_apaches = all_text_lower.count(search_for.lower())
     print(f"There are {str(num_of_apaches)} occurrences of: {search_for.lower()} on the default page")
@@ -64,6 +66,7 @@ def get_all_id_tags(soup):
     print("\n" + "-"*60)
     print("Assignment Q2.3 - (All tags with an id)\n")
     id_tags = soup.find_all(id=True)
+    # enumerate so you have a position number for the output
     for counter, id_tag in enumerate(id_tags):
         string_counter = str(counter + 1)
         value_to_pass = f"#{string_counter}: {id_tag}"
@@ -82,7 +85,9 @@ def main():
     if url is None or url == "":
         url = input("Please pass in a valid url...\n")
         url = format_url(url)
+    # use request to get the content at the url
     homepage = requests.get(url)
+    # parse the content using the html.parser so it can be passed to each of the 3 functions
     soup = BeautifulSoup(homepage.content, "html.parser")
 
     # assignment_2_1
@@ -90,9 +95,11 @@ def main():
 
     # assignment_2_2
     search_term = "apache"
+    # pass soup and search term to the function
     count_occurrences_of_search_term(soup, search_term)
 
     # assignment_2_3
+    # pass soup to get all tags that have an ID
     get_all_id_tags(soup)
 
 
