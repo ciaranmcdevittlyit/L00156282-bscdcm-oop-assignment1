@@ -61,7 +61,7 @@ def main():
                     create_labs_subfolders, get_last_accessed_files]
 
     for command in run_commands:
-        # append a space to the end of any command that gets run to ensure they run without any problems
+        # append a new line to the end of any command that gets run to ensure they run without any problems
         command = f"{command}\n"
         ssh_connection(ip_address, command) 
 
